@@ -1,20 +1,20 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "eu-west-1"
 }
 
-resource "aws_instance" "demo-server" {
-    ami = "ami-022e1a32d3f742bd8"
+resource "aws_instance" "terraform-demo-server" {
+    ami = "ami-0fef2f5dd8d0917e8"
     instance_type = "t2.micro"
-    key_name = "dpp"
-    security_groups = [ "demo-sg" ]
+    key_name = "tds-2"
+    security_groups = [ "terraform-demo-sg" ]
 }
 
-resource "aws_security_group" "demo-sg" {
-  name        = "demo-sg"
+resource "aws_security_group" "terraform-demo-sg" {
+  name        = "terraform-demo-sg"
   description = "SSH Access"
   
   ingress {
-    description      = "Shh access"
+    description      = "SSH access"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
@@ -30,7 +30,7 @@ resource "aws_security_group" "demo-sg" {
   }
 
   tags = {
-    Name = "ssh-prot"
+    Name = "ssh-port"
 
   }
 }
