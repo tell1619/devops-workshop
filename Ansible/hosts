@@ -1,14 +1,13 @@
-[jenkins-master]
-10.1.1.139
+ [jenkins-master]
+ 10.1.1.254
 
-[jenkins-master:vars]
-ansible_user=ubuntu
-ansible_ssh_private_key_file=/opt/dpp.pem
+ [jenkins-master:vars]
+ ansible_user=ubuntu
+ ansible_ssh_private_key_file=/opt/tds-2.pem
 
-[jenkins-slave]
-10.1.1.201
+ [build-slave]
+ 10.1.1.138
 
-[jenkins-slave:vars]
-ansible_user=ubuntu
-ansible_ssh_private_key_file=/opt/dpp.pem
-
+ [build-slave:vars]
+ ansible_user=ubuntu
+ ansible_ssh_private_key_file=/opt/tds-2.pem
