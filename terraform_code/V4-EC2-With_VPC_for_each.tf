@@ -102,3 +102,26 @@ resource "aws_route_table_association" "terraform-demo-rta-public-subnet-02" {
   subnet_id = aws_subnet.terraform-demo-public-subnet-02.id 
   route_table_id = aws_route_table.terraform-demo-public-rt.id   
 }
+
+#Budget Alarm
+
+module "billing_alert" {
+  source = "binbashar/cost-billing-alarm/aws"
+
+  aws_env = local.aws_profile
+  aws_account_id = local.aws_account_id
+  monthly_billing_threshold = 10
+  currency = "USD"
+  create_sns_topic = true
+}
+
+output "sns_topic_arn" {
+  value = module.billing_alert.sns_topic_arns
+}
+# Will output the following:
+# arn:aws:sns:us-east-1:111111111111:billing-alarm-notification-usd-dev for billing alarms
+
+locals {
+  aws_account_id = "381492164150" 
+  aws_profile = "dev"
+}
